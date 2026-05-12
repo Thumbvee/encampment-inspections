@@ -352,7 +352,7 @@ function setItem(id, value, btn) {
   const remaining = allItems.filter(entry => !scores[entry.id]);
   if (remaining.length > 0) {
     const next = document.getElementById('card_' + remaining[0].id);
-    if (next) setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
+    if (next) setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'center' }), 150);
   }
 }
  
