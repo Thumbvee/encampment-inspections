@@ -22,14 +22,14 @@
   body { background: var(--bg); color: var(--text); font-family: 'Barlow', sans-serif; min-height: 100vh; padding-bottom: 80px; }
 
   /* HEADER */
-  .header { background: var(--header-bg); border-bottom: 1px solid #1e3a55; padding: 18px 80px 14px; text-align: center; position: sticky; top: 0; z-index: 100; }
-  .header-inner { display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .header { background: var(--header-bg); border-bottom: 1px solid #1e3a55; padding: 14px 16px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; }
+  .header-inner { display: flex; align-items: center; gap: 14px; }
   .header img { height: 54px; width: auto; }
   .header-label { font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 4px; color: #9ecae1; text-transform: uppercase; margin-bottom: 4px; }
   .header-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; color: #ffffff; text-transform: uppercase; }
 
   /* CHANGE BUTTON — small, top right */
-  .change-btn-wrap { position: absolute; top: 50%; right: 16px; transform: translateY(-50%); }
+  .change-btn-wrap { display: flex; align-items: center; }
   .change-btn {
     background: transparent;
     border: 1px solid #2a5070;
