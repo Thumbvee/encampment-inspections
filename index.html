@@ -51,7 +51,7 @@
   .screen.active { display: block; }
 
   /* LANDING */
-  #landing { display: none; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 40px 20px; background: var(--bg); }
+  #landing { display: none; flex-direction: column; align-items: center; justify-content: center; height: 100vh; padding: 40px 20px; background: var(--bg); overflow: hidden; }
   #landing.active { display: flex; }
 
   .landing-patch { width: 90px; height: 90px; object-fit: contain; margin-bottom: 18px; }
@@ -152,7 +152,7 @@
 <body>
 
 <!-- HEADER -->
-<div class="header" style="position:relative;">
+<div class="header" style="position:relative; display:none;" id="main-header">
   <div class="header-inner">
     <img src="patch.png" alt="MNWG patch" onerror="this.style.display='none'">
     <div>
@@ -280,6 +280,7 @@ function startInspection() {
   const insp = INSPECTIONS.find(i => i.id === id);
   if (!insp) return;
   currentInspection = insp;
+  document.getElementById('main-header').style.display = 'block';
   document.getElementById('header-title').textContent = insp.name;
   document.getElementById('change-btn').style.display = 'block';
   buildForm(insp.type === 'utility' ? SECTIONS_UTILITY : SECTIONS_BLUES);
@@ -288,6 +289,7 @@ function startInspection() {
 
 function goToLanding() {
   showScreen('landing');
+  document.getElementById('main-header').style.display = 'none';
   document.getElementById('change-btn').style.display = 'none';
   document.getElementById('header-title').textContent = '2026 Encampment Inspections';
 }
@@ -506,5 +508,47 @@ function resetForm() {
 
 document.addEventListener('DOMContentLoaded', init);
 </script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     GOOGLE APPS SCRIPT
+     Tools > Apps Script in your Sheet → paste below → Save →
+     Deploy as Web App (Execute as: Me, Access: Anyone) →
+     copy the Web App URL into APPS_SCRIPT_URL above.
+═══════════════════════════════════════════════════════════
+
+const SHEET_MAP = {
+  'Inspection 1': 'Raw_Inspection1',
+  'Inspection 2': 'Raw_Inspection2',
+  'Inspection 3': 'Raw_Inspection3',
+  'Inspection 4': 'Raw_Inspection4',
+  'Inspection 5': 'Raw_Inspection5',
+};
+
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const sheetName = SHEET_MAP[data.inspection] || 'Raw_Unmatched';
+    let sheet = ss.getSheetByName(sheetName);
+    if (!sheet) sheet = ss.insertSheet(sheetName);
+    const keys = Object.keys(data);
+    if (sheet.getLastRow() === 0) sheet.appendRow(keys);
+    sheet.appendRow(keys.map(k => data[k]));
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doGet() {
+  return ContentService.createTextOutput('Inspection endpoint active.');
+}
+
+═══════════════════════════════════════════════════════════ -->
+
 </body>
 </html>
