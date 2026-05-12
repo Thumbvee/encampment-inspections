@@ -51,7 +51,7 @@
   .screen.active { display: block; }
 
   /* LANDING */
-  #landing { display: none; flex-direction: column; align-items: center; justify-content: center; height: 100vh; padding: 20px; background: var(--bg); overflow: hidden; }
+  #landing { display: none; flex-direction: column; align-items: center; justify-content: center; height: 100vh; height: 100dvh; padding: 20px; background: var(--bg); overflow: hidden; position: fixed; width: 100%; top: 0; left: 0; }
   #landing.active { display: flex; }
 
   .landing-patch { width: 80px; height: 80px; object-fit: contain; margin-bottom: 12px; }
@@ -279,6 +279,7 @@ function startInspection() {
   if (!id) return;
   const insp = INSPECTIONS.find(i => i.id === id);
   if (!insp) return;
+  document.body.style.overflow = '';
   currentInspection = insp;
   document.getElementById('main-header').style.display = 'block';
   document.getElementById('header-title').textContent = insp.name;
@@ -288,6 +289,7 @@ function startInspection() {
 }
 
 function goToLanding() {
+  document.body.style.overflow = 'hidden';
   showScreen('landing');
   document.getElementById('main-header').style.display = 'none';
   document.getElementById('change-btn').style.display = 'none';
@@ -506,7 +508,10 @@ function resetForm() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.style.overflow = 'hidden';
+  init();
+});
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════
