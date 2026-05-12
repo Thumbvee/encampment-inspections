@@ -215,7 +215,7 @@
 // CONFIGURATION
 // ─────────────────────────────────────────────
 
-const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+const APPS_SCRIPT_URL = https://script.google.com/macros/s/AKfycbxhhVJguo8S7djkLTGRWRd3vHHyvEfoHQrwGNqd9nlVYV3DAlhmkwZuxmKDgdAplYBf/exec;
 
 const INSPECTIONS = [
   { id: 1, name: 'Inspection 1', type: 'utility' },
@@ -513,47 +513,5 @@ document.addEventListener('DOMContentLoaded', () => {
   init();
 });
 </script>
-
-<!-- ═══════════════════════════════════════════════════════════
-     GOOGLE APPS SCRIPT
-     Tools > Apps Script in your Sheet → paste below → Save →
-     Deploy as Web App (Execute as: Me, Access: Anyone) →
-     copy the Web App URL into APPS_SCRIPT_URL above.
-═══════════════════════════════════════════════════════════
-
-const SHEET_MAP = {
-  'Inspection 1': 'Raw_Inspection1',
-  'Inspection 2': 'Raw_Inspection2',
-  'Inspection 3': 'Raw_Inspection3',
-  'Inspection 4': 'Raw_Inspection4',
-  'Inspection 5': 'Raw_Inspection5',
-};
-
-function doPost(e) {
-  try {
-    const data = JSON.parse(e.postData.contents);
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
-    const sheetName = SHEET_MAP[data.inspection] || 'Raw_Unmatched';
-    let sheet = ss.getSheetByName(sheetName);
-    if (!sheet) sheet = ss.insertSheet(sheetName);
-    const keys = Object.keys(data);
-    if (sheet.getLastRow() === 0) sheet.appendRow(keys);
-    sheet.appendRow(keys.map(k => data[k]));
-    return ContentService
-      .createTextOutput(JSON.stringify({ status: 'ok' }))
-      .setMimeType(ContentService.MimeType.JSON);
-  } catch(err) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}
-
-function doGet() {
-  return ContentService.createTextOutput('Inspection endpoint active.');
-}
-
-═══════════════════════════════════════════════════════════ -->
-
 </body>
 </html>
