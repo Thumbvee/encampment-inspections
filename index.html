@@ -27,7 +27,7 @@
   .header img { height: 54px; width: auto; }
   .header-title { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: 2px; color: #ffffff; text-transform: uppercase; line-height: 1; }
  
-  /* CHANGE BUTTON — small, top right */
+  /* CHANGE BUTTON */
   .change-btn-wrap { position: absolute; top: 50%; right: 16px; transform: translateY(-50%); }
   .change-btn {
     background: transparent;
@@ -221,8 +221,158 @@ const INSPECTIONS = [
   { id: 5, name: 'Inspection 5', type: 'blues'   },
 ];
  
-// Populate when roster is available: { "123456": "Doe, John A." }
-const ROSTER = {};
+// ─────────────────────────────────────────────
+// ROSTER  { CAPID: [LastName, FirstName] }
+// ─────────────────────────────────────────────
+const ROSTER = {
+  753220: ['Aulwes','Aili'],
+  754161: ['Blake','Samuel'],
+  748025: ['Bryan-Peterson','Mahnikko'],
+  763870: ['Canniff','Liam'],
+  752706: ['Cherukumalli','Arya'],
+  752543: ['Christians','Leo'],
+  758226: ['Colas','Krisha'],
+  757537: ['Collins Axelson','Thora'],
+  750838: ['Cool','Mason'],
+  748700: ['Davis','Saraqael'],
+  740627: ['Elwood','Kiara'],
+  758194: ['Erdmann','Josilyn'],
+  746434: ['Fuhrman','Oliver'],
+  767359: ['Gackenheimer','Wilson'],
+  761294: ['Halvorsen','Melanie'],
+  767572: ['Hontar','Mykola'],
+  760137: ['Jadhav','Parnavee'],
+  758708: ['Kirkham','Oakley'],
+  752767: ['Komarec','Ronin'],
+  755151: ['Kramer','Mathew'],
+  750531: ['Krech','Elijah'],
+  756101: ['Nephew','Emilia'],
+  756629: ['Olson','Oscar'],
+  762480: ['Proffen','Ammelia'],
+  758690: ['Rivera-Schultz','Aiden'],
+  751084: ['Savoie','Jackson'],
+  754081: ['Schmidt','Autumn'],
+  747784: ['Sills','Colette'],
+  761023: ['Smyers','John'],
+  737986: ['Stein','Jonathon'],
+  748790: ['Valdez','Roman'],
+  751589: ['Walker','Ava'],
+  752538: ['Wehseler','Katelyn'],
+  768971: ['Anderson','Grace'],
+  773605: ['Ascheman','Katelyn'],
+  755960: ['Ayebo','Victor'],
+  753600: ['Bayerle-Christensen','Jace'],
+  771047: ['Borgerding','Drew'],
+  746518: ['Cain','Cruz'],
+  774169: ['Covarrubias','Ruben'],
+  750282: ['Crook','Mathias'],
+  767351: ['Danielson','Sophia'],
+  762496: ['Deepak','Devadathan'],
+  771221: ['Ding','Max'],
+  755872: ['Frederick','Henri'],
+  765052: ['Gingras','Donna'],
+  765055: ['Gingras','Jonathon'],
+  769615: ['Gordy','Brianna'],
+  761261: ['Gundubogula','Suryansh'],
+  764759: ['Hagan','Gavin'],
+  756573: ['Harwood','Trevor'],
+  757685: ['Jaster','Mason'],
+  770118: ['Jensen','Malachi'],
+  739318: ['Kingwell','Matthew'],
+  765969: ['Long','Jacob'],
+  766918: ['Martin','Danielle'],
+  755982: ['Massmann','Grace'],
+  717963: ['Miller Velasquez','Augustine'],
+  772366: ['Mullineaux','Angelique'],
+  774649: ['Raway','Clara'],
+  760083: ['Robertson','Isabelle'],
+  773432: ['Sarvie','Kennedy'],
+  771835: ['Schaefer','Dylan'],
+  748531: ['Steichen','Michael'],
+  756799: ['Tatur','Aiden'],
+  757112: ['Thiyagarajan','Anish'],
+  774645: ['Todsen','Kai'],
+  761716: ['Truwe','Ty'],
+  772462: ['Vanhoorik','Elliot'],
+  756318: ['Washburn','Wyatt'],
+  768930: ['Wind','Liam'],
+  764258: ['Young','Nicholas'],
+  764309: ['Zachman','Timothy'],
+  739298: ['Klosterman','Benjamin'],
+  731560: ['Meyers','Justin'],
+  731009: ['Pearce','Iken'],
+  738355: ['McBride','Gabriel'],
+  731010: ['Pearce','Ernest'],
+  701742: ['Rovinsky','David'],
+  740608: ['Rovinsky','John'],
+  739666: ['Damsgard','Gracia'],
+  712844: ['Meyers','Joshua'],
+  740688: ['Northway','Antje'],
+  735766: ['Anand','Aadhyya'],
+  730828: ['Bohl','Shea'],
+  738668: ['Coulson','Garrett'],
+  754225: ['Gaston','Sean'],
+  745407: ['Goset','Amelia'],
+  751959: ['Heffron','Bethany'],
+  740766: ['McDonald','Asher'],
+  750270: ['Michalek','Jonathan'],
+  750889: ['Parsons','Simone'],
+  733375: ['Putland','Hugh'],
+  730649: ['Rice','Jaxson'],
+  753425: ['Riesberg','Sophia'],
+  748535: ['Shelton','Landon'],
+  753483: ['Snow','Archer'],
+  754681: ['Berg','Angel'],
+  746868: ['Broadbent','Brooke'],
+  738670: ['Bullock','Logan'],
+  731933: ['Bures','Oriana'],
+  756570: ['Carrigan','Makayla'],
+  752700: ['Cherukumalli','Aradhya'],
+  756249: ['Cowles','Charles'],
+  744102: ['Dameral','Brayden'],
+  712613: ['Dickerson','Abigail'],
+  715050: ['Dvorak','Fredrick'],
+  731996: ['Eisinger','Anna'],
+  732118: ['Falbo','Everett'],
+  749371: ['Gerth','Matthew'],
+  747502: ['Gilpin','Aaron'],
+  752854: ['Gjerde','Christian'],
+  752623: ['Gudim','Milo'],
+  749772: ['Hilfer','Clara'],
+  753234: ['Hill','Nathan'],
+  734871: ['Jackson','Jayson'],
+  735769: ['Jegadeesh Liviya Prabha','Sacchitprituh'],
+  740249: ['Karlson','Brendan'],
+  735143: ['Karthik','Prajeeth'],
+  754205: ['Kiel','Wyatt'],
+  748186: ['Kraft','Peter'],
+  757410: ['Larson','Allie'],
+  746698: ['Noorlun','Matthew'],
+  743115: ['Qi','Jacqueline'],
+  751169: ['Rekstad','Lee'],
+  732139: ['Salvati','Joseph'],
+  755918: ['Schlenker','Gavin'],
+  754187: ['Schmidt','Gavin'],
+  754188: ['Schmidt','Ian'],
+  753488: ['Snow','Abbott'],
+  756928: ['Spear','Talon'],
+  737985: ['Stein','Brandon'],
+  732135: ['Thompson','Alexis'],
+  700819: ['Thompson','Alivia'],
+  708544: ['Watkins','Victor'],
+  752547: ['Winge','Ava'],
+  748572: ['Abdissa','Solane'],
+  727280: ['Basarich','Isaac'],
+  752549: ['Dobyns','Lukas'],
+  750357: ['Erkens','Liam'],
+  700599: ['Heffron','Chloe'],
+  747704: ['Iyengar','Mithila'],
+  743932: ['Laffitte','Javier'],
+  738264: ['Neibert','Jocelynn'],
+  751663: ['Smith','Chloe'],
+  729957: ['Smith','Tyler'],
+  726765: ['Wirtz','Jayden'],
+};
  
 // ─────────────────────────────────────────────
 // INSPECTION ITEMS
@@ -241,9 +391,9 @@ const SECTIONS_BLUES = {
 };
  
 const SECTION_LABELS = {
-  uniform:  'Uniform',
-  locker:   'Locker',
-  bunk:     'Bunk'
+  uniform: 'Uniform',
+  locker:  'Locker',
+  bunk:    'Bunk'
 };
  
 // ─────────────────────────────────────────────
@@ -333,7 +483,6 @@ function buildForm(sections) {
     });
   });
  
-  // Reset submit area
   document.getElementById('submitBtn').style.display = 'block';
   document.getElementById('submitBtn').disabled = false;
   document.getElementById('submitBtn').textContent = 'Submit Inspection';
@@ -348,7 +497,6 @@ function setItem(id, value, btn) {
   card.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
  
-  // Auto-scroll to next unscored item
   const remaining = allItems.filter(entry => !scores[entry.id]);
   if (remaining.length > 0) {
     const next = document.getElementById('card_' + remaining[0].id);
@@ -359,7 +507,7 @@ function setItem(id, value, btn) {
 function slug(str) { return str.replace(/[^a-zA-Z0-9]/g, '_'); }
  
 // ─────────────────────────────────────────────
-// CAPID
+// CAPID LOOKUP
 // ─────────────────────────────────────────────
 function checkCapid() {
   const val = document.getElementById('capid').value.trim();
@@ -370,7 +518,7 @@ function checkCapid() {
     const cadet = ROSTER[Number(val)] || ROSTER[val];
     if (cadet) {
       warning.style.display = 'none';
-      bannerText.textContent = Array.isArray(cadet) ? cadet[0] + ', ' + cadet[1] : cadet;
+      bannerText.textContent = cadet[0] + ', ' + cadet[1];
       banner.style.display = 'flex';
     } else {
       banner.style.display = 'none';
@@ -396,10 +544,6 @@ function updateQueueNotice() {
 }
  
 function sendPayload(payload) {
-  if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
-    console.log('[DEV] Payload:', JSON.stringify(payload, null, 2));
-    return Promise.resolve();
-  }
   return fetch(APPS_SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
@@ -443,8 +587,8 @@ function submitForm() {
   btn.disabled = true;
   btn.textContent = 'Submitting...';
  
-  const cadetRaw = ROSTER[Number(capid)] || ROSTER[capid];
-  const cadetName = Array.isArray(cadetRaw) ? cadetRaw[0] + ', ' + cadetRaw[1] : (cadetRaw || '');
+  const cadet = ROSTER[Number(capid)] || ROSTER[capid];
+  const cadetName = cadet ? cadet[0] + ', ' + cadet[1] : '';
  
   const payload = {
     timestamp: new Date().toISOString(),
